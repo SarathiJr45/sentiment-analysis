@@ -1,0 +1,183 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bank Note Checker</title>
+    <h1>Bank Note Checker</h1>
+  </head>
+  <body>
+
+
+    <form action="/predict" method="POST" id="m1Form">
+      <label for="variance">Enter Varience</label>
+      <input type="number" id="variance" /><br />
+
+      <label for="skewness">Enter skewness</label>
+
+      <input type="number" id="skewness" /><br />
+      <label for="curtosis">Enter curtosis</label>
+      <input type="number" id="curtosis" /><br />
+      <label for="entropy">Enter entropy</label>
+      <input type="number" id="entropy" /> <br />
+      <br /><br />
+      <button type="button" onclick="predict()">predict</button>
+    </form>
+
+    <h2>Prediction result</h2>
+    <p id="PredictionResult"></p>
+    <script>
+      async function predict() {
+        const independent = {
+          variance: document.getElementById("variance").value,
+          skewness: document.getElementById("skewness").value,
+          curtosis: document.getElementById("curtosis").value,
+          entropy: document.getElementById("entropy").value,
+        };
+        const responce = await fetch("http://127.0.0.1:8080/predict", {
+          method: "POST",
+          headers: {
+            "content-Type": "application/json",
+          },
+          body: JSON.stringify(independent),
+        });
+        console.log(JSON.stringify(independent));
+        console.log(responce);
+
+        const data = await responce.json();
+        console.log(data);
+        document.getElementById(
+          "predictionResult"
+        ).innerText = `Prediction: ${data.prediction}`
+      }
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ML project</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Pixelify+Sans:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="static/style.css" type="text/css"> -->
+    <style>
+      h1 {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        padding-bottom: 0;
+        font-size: 60px;
+      }
+
+      label {
+        color: darkmagenta;
+        font-family: Pixelify Sans;
+        font-size: 30px;
+      }
+
+      input {
+        width: 500px;
+        height: 50px;
+        border-radius: 14px;
+      }
+
+      button {
+        width: 200px;
+        height: 30px;
+        border-radius: 14px;
+        color: #fff;
+        font-family: Pixelify Sans;
+        font-size: 20px;
+        background-color: darkmagenta;
+      }
+
+      h2 {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        padding-bottom: 0;
+        font-family: Pixelify Sans;
+        font-size: 50px;
+        color: #fff;
+      }
+
+      h3 {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        padding-bottom: 0;
+        font-family: Pixelify Sans;
+        color: #fff;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+
+  <body style="background-color: black">
+    <h1 style="font-family: Pixelify Sans; color: #0edd6b">Bank Note Checker</h1>
+
+    <div>
+      <h2>Introducing our Bank Note prediction machine learning model.</h2>
+
+      <!-- <h3> Experience accuracy and precision in identifying various flower types through our advanced algorithms.
+                Through this technology, we offer you a precise and insightful prediction of various flower types.
+                 We invite you to delve into the realm of botanical discovery and witness the accuracy our model delivers in identifying <br> different species of flowers.
+            </h3> -->
+    </div>
+    <!--
+<div class="left">
+    <img src="static/roboflower-remove.png" alt="flowerimage" width="400px" >
+    
+</div>
+-->
+
+    <div class="right">
+      <form action="http://127.0.0.1:5000/predict" , method="POST" ,id="m1Form">
+        <label for="Varience">Varience</label><br />
+        <input type="text" id="Varience" name="Varience" /><br /><br />
+        <label for="skewness">skewness</label><br />
+        <input type="text" id="skewness" name="skewness" /><br /><br />
+        <label for="curtosis">curtosis</label><br />
+        <input type="text" id="curtosis" name="curtosis" /><br /><br />
+        <label for="entropy">entropy</label><br />
+        <input type="text" id="entropy" name="entropy" /><br /><br />
+        <button type="button" onclick="predict()">Predict</button>
+      </form>
+    </div>
+
+    <h2>Prediction Result:</h2>
+    <p
+      id="predictionResult"
+      style="font-family: Pixelify Sans; color: #0edd6b; font-size: 30px"
+    ></p>
+
+    <script>
+      async function predict() {
+        const independent = {
+          Varience: document.getElementById("Varience").value,
+          skewness: document.getElementById("skewness").value,
+          curtosis: document.getElementById("curtosis").value,
+          entropy: document.getElementById("entropy").value,
+        };
+
+        const response = await fetch("http://127.0.0.1:5000/predict", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(independent),
+        });
+        console.log(JSON.stringify(independent));
+        console.log(response);
+
+        const data = await response.json();
+        console.log(data);
+        document.getElementById(
+          "predictionResult"
+        ).innerText = `Prediction: ${data.prediction}`;
+      }
+    </script>
+  </body>
+</html>
